@@ -15,6 +15,8 @@ Features:
 
 Usage:
 
+![compile](https://github.com/DavidNath4/CRUD-Student-Management-C/assets/73566173/a26ac081-f911-4ffe-b492-149e92665f80)
+
 1. Compile the code using a C compiler (e.g., gcc).
 
 gcc -o main main.c
