@@ -11,12 +11,22 @@ Features:
 5. Search: Find and display a specific student's details based on their ID.
 6. Update: Modify a student's name and nilai by providing their ID.
 7. Delete: Remove a student's record by specifying their ID.
-8. Sorting: Sort the student records based on total nilai or ID, in ascending or 9. descending order.
+8. Sorting: Sort the student records based on total nilai, name or ID, in ascending or 9. descending order.
 
 Usage:
 
 1. Compile the code using a C compiler (e.g., gcc).
+
+gcc -o main main.c
+
 2. Run the compiled executable to access the menu-driven Student Management System.
+
+On Windows:
+.\main.exe
+
+On Linux/macOS
+./main
+
 3. Follow the prompts to perform various operations on student records.
 
 Menu Options:
@@ -32,4 +42,6 @@ Menu Options:
 9. SORTING DATA - TOTAL NILAI DESC: Sort by total nilai in descending order.
 10. SORTING DATA - ID ASC: Sort by ID in ascending order.
 11. SORTING DATA - ID DESC: Sort by ID in descending order.
-12. EXIT: Terminate the program.
+12. SORTING DATA - NAME ASC: Sort by Name in ascending order.
+13. SORTING DATA - NAME ASC: Sort by Name in descending order.
+14. EXIT: Terminate the program.

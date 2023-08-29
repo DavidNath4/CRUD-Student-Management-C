@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct student {
   int id;
@@ -335,6 +336,82 @@ void sort_in_file_by_id_desc() {
   fclose(fp);
 }
 
+void sort_in_file_by_name_asc() {
+  student *s, sl;
+  FILE *fp;
+  int i, j;
+  fp = fopen("data.txt", "r");
+  fseek(fp, 0, SEEK_END);
+  int n = ftell(fp) / sizeof(student);
+
+  s = (student *)calloc(n, sizeof(student));
+
+  rewind(fp);
+  for (i = 0; i < n; i++) {
+    fread(&s[i], sizeof(student), 1, fp);
+  }
+  fclose(fp);
+
+  for (i = 0; i < n; i++) {
+    for (j = i + 1; j < n; j++) {
+      if (strcasecmp(s[i].name, s[j].name) > 0) {
+        sl = s[i];
+        s[i] = s[j];
+        s[j] = sl;
+      }
+    }
+  }
+
+  fp = fopen("data.txt", "w");
+
+  printf("==================SORTED IN DATA (By Name)==================\n");
+  for (i = 0; i < n; i++) {
+    printf("%-4d%-20s%d\n", s[i].id, s[i].name, s[i].nilai);
+    fwrite(&s[i], sizeof(student), 1, fp);
+  }
+  printf("==================SORTED IN DATA (By Name)==================\n");
+
+  fclose(fp);
+}
+
+void sort_in_file_by_name_desc() {
+  student *s, sl;
+  FILE *fp;
+  int i, j;
+  fp = fopen("data.txt", "r");
+  fseek(fp, 0, SEEK_END);
+  int n = ftell(fp) / sizeof(student);
+
+  s = (student *)calloc(n, sizeof(student));
+
+  rewind(fp);
+  for (i = 0; i < n; i++) {
+    fread(&s[i], sizeof(student), 1, fp);
+  }
+  fclose(fp);
+
+  for (i = 0; i < n; i++) {
+    for (j = i + 1; j < n; j++) {
+      if (strcasecmp(s[i].name, s[j].name) < 0) {
+        sl = s[i];
+        s[i] = s[j];
+        s[j] = sl;
+      }
+    }
+  }
+
+  fp = fopen("data.txt", "w");
+
+  printf("==================SORTED IN DATA (By Name)==================\n");
+  for (i = 0; i < n; i++) {
+    printf("%-4d%-20s%d\n", s[i].id, s[i].name, s[i].nilai);
+    fwrite(&s[i], sizeof(student), 1, fp);
+  }
+  printf("==================SORTED IN DATA (By Name)==================\n");
+
+  fclose(fp);
+}
+
 int main() {
   int ch;
   do {
@@ -342,7 +419,7 @@ int main() {
     printf("\n1. CREATE");
     printf("\n2. DISPLAY");
     printf("\n3. APPEND");
-    printf("\n4. NO OF RECORDS");
+    printf("\n4. TOTAL RECORDS");
     printf("\n5. SEARCH");
     printf("\n6. UPDATE");
     printf("\n7. DELETE");
@@ -350,6 +427,8 @@ int main() {
     printf("\n9. SORTING DATA - TOTAL NILAI DESC");
     printf("\n10. SORTING DATA - ID ASC");
     printf("\n11. SORTING DATA - ID DESC");
+    printf("\n12. SORTING DATA - NAME ASC");
+    printf("\n13. SORTING DATA - NAME DESC");
     printf("\n0. EXIT");
 
     printf("\nINPUT THE NUMBER  ");
@@ -388,6 +467,12 @@ int main() {
         break;
       case 11:
         sort_in_file_by_id_desc();
+        break;
+      case 12:
+        sort_in_file_by_name_asc();
+        break;
+      case 13:
+        sort_in_file_by_name_desc();
         break;
     }
 
